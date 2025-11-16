@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/stolz/prog/python/python-scripts/.venv/bin/python3
 # -*- coding: utf-8 -*-
 
 """

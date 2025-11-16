@@ -1,3 +1,6 @@
+#!/home/stolz/prog/python/python-scripts/.venv/bin/python3
+# -*- coding: utf-8 -*-
+
 # -------------------- Colores ANSI --------------------
 
 RED = "\033[91m"
@@ -5,9 +8,6 @@ GREEN = "\033[92m"
 YELLOW = "\033[93m"
 BLUE = "\033[94m"
 RESET = "\033[0m"
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 """
 

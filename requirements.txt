@@ -1,0 +1,9 @@
+# Dependencias para todos los scripts
+# Carpeta cybersecurity
+pyperclip
+termcolor
+
+# Carpeta vocab
+deepl
+requests
+tqdm
