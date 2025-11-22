@@ -1,0 +1,14 @@
+Eine Tastatur wirkt auf den ersten Blick wie ein simples Eingabegerät, doch hinter jedem Tastendruck steckt ein erstaunlich komplexer Prozess.
+Alles beginnt mit der physischen Konstruktion. Unter jeder Taste befindet sich ein mechanischer oder membranbasierter Schalter. Wird eine Taste gedrückt, schließt dieser Schalter einen elektrischen Kontakt und erzeugt ein Signal. Bei mechanischen Tastaturen geschieht dies über präzise gefertigte Switches, während Membrantastaturen eine flexible Folie benutzen, die bei Druck leitend wird.
+
+Diese elektrischen Signale werden anschließend über eine sogenannte Matrix aus Leitungen geleitet. Die Tastatur ist intern in Zeilen und Spalten aufgeteilt, und jeder Tastenanschlag wird durch die genaue Kreuzung dieser Linien identifiziert. So kann der Mikrocontroller der Tastatur erkennen, welche Taste aktiv ist, ohne für jede einzelne einen eigenen Kabelkanal zu benötigen.
+
+Der eingebaute Mikrocontroller wandelt das physische Signal in einen Scan-Code um. Dieser Code ist eine Art neutrale, hardwareabhängige Beschreibung des Tastendrucks – zum Beispiel „Taste X in Spalte 5, Zeile 3 wurde aktiviert“.
+Diese Scan-Codes werden über USB oder eine andere Schnittstelle an den Computer übertragen.
+
+Im Betriebssystem beginnt dann der softwareseitige Teil des Prozesses. Zuerst wandelt der Tastaturtreiber den Scan-Code in einen standardisierten Keycode um, der unabhängig vom verwendeten Tastaturmodell ist.
+Dieser Keycode wird anschließend von der Tastaturbelegung interpretiert. Je nachdem, welches Layout eingestellt ist – Deutsch, Englisch, Lateinamerika – entscheidet das System, welcher tatsächliche Buchstabe oder welches Symbol angezeigt wird. Ein und derselbe physische Tastendruck kann somit je nach Layout unterschiedliche Zeichen erzeugen.
+
+Schließlich wird das Ergebnis an das aktive Programm weitergegeben, sei es ein Texteditor, ein Terminal oder ein Spiel. Dort erscheint der Buchstabe auf dem Bildschirm oder löst die entsprechende Aktion aus.
+
+Zusammengefasst verbindet eine Tastatur Mechanik, Elektronik und Software auf beeindruckend präzise Weise. Ein einziger Tastendruck durchläuft mehrere Schichten – von der Hardware-Matrix über Mikrocontroller und Treiber bis hin zur Anwendung – und das alles innerhalb von Millisekunden.

@@ -44,7 +44,7 @@ except ImportError:
 
 # -------------------- Constantes de configuración --------------------
 
-SUPPORTED_LANGS = ["de", "en", "pt", "it"]
+SUPPORTED_LANGS = ["de", "en", "pt", "it", "es"]
 DEFAULT_LANG = "de"
 TARGET_LANG = "es"  # siempre traducimos al español en esta versión
 
@@ -92,6 +92,13 @@ def normalize_word(word: str, lang: str) -> str:
                 .replace("ß", "ss"))
     # para otros idiomas por ahora no normalizamos caracteres especiales
     return word.lower()
+
+
+def contains_number(word: str) -> bool:
+    """
+    Verifica si una palabra contiene algún dígito.
+    """
+    return any(char.isdigit() for char in word)
 
 
 def tokenize(text: str):
@@ -177,8 +184,13 @@ def load_ignore_words(script_dir: Path, exclude_path: str, lang: str):
         * Buscamos DEFAULT_IGNORE_FILENAME en la carpeta del script.
         * Si existe → usarlo.
         * Si no → no se excluye nada.
+    
+    Devuelve un dict con:
+    - 'normalized': set de palabras normalizadas
+    - 'originals': set de palabras originales (sin normalizar)
     """
-    ignore_set = set()
+    ignore_normalized = set()
+    ignore_originals = set()
 
     if exclude_path:
         path = Path(exclude_path)
@@ -202,14 +214,19 @@ def load_ignore_words(script_dir: Path, exclude_path: str, lang: str):
                     w = line.strip()
                     if not w:
                         continue
+                    # Guardar tanto normalizada como original
+                    ignore_originals.add(w.lower())
                     norm = normalize_word(w, lang)
                     if norm:
-                        ignore_set.add(norm)
+                        ignore_normalized.add(norm)
         except UnicodeDecodeError:
             print(f"❌ No se pudo leer '{p}' como UTF-8.", file=sys.stderr)
             sys.exit(1)
 
-    return ignore_set
+    return {
+        'normalized': ignore_normalized,
+        'originals': ignore_originals
+    }
 
 
 # -------------------- Cache --------------------
@@ -363,24 +380,38 @@ def get_translation(norm_key: str,
 # -------------------- Conteo de palabras --------------------
 
 
-def count_words(text: str, lang: str, ignore_set):
+def count_words(text: str, lang: str, ignore_dict):
     """
     Cuenta palabras:
     - mantiene la forma original (primera vista) para mostrar
     - agrupa por forma normalizada para contar y traducir
-    - ignora las que estén en ignore_set (normalizadas)
+    - ignora las que estén en ignore_dict (normalizadas o originales)
+    - ignora palabras que contienen números
     """
 
     tokens = tokenize(text)
     total_tokens = len(tokens)
 
     words_data = {}  # norm -> {"original": str, "count": int}
+    
+    ignore_normalized = ignore_dict['normalized']
+    ignore_originals = ignore_dict['originals']
 
     for original in tokens:
+        # Filtrar palabras con números
+        if contains_number(original):
+            continue
+            
         norm = normalize_word(original, lang)
         if not norm:
             continue
-        if norm in ignore_set:
+            
+        # Filtrar palabras en ignore.txt (normalizada)
+        if norm in ignore_normalized:
+            continue
+            
+        # Filtrar palabras en ignore.txt (original en minúsculas)
+        if original.lower() in ignore_originals:
             continue
 
         entry = words_data.get(norm)
@@ -573,10 +604,10 @@ def parse_args():
     )
 
     parser.add_argument(
-        "-l", "--lang",
-        choices=SUPPORTED_LANGS,
-        default=DEFAULT_LANG,
-        help="Idioma del texto de entrada (default: de). Opciones: de, en, pt, it.",
+    "-l", "--lang",
+    choices=SUPPORTED_LANGS,
+    default=DEFAULT_LANG,
+    help="Idioma del texto de entrada (default: de). Opciones: de, en, pt, it, es.",
     )
 
     parser.add_argument(
@@ -602,24 +633,35 @@ def parse_args():
         help="Muestra qué API se usa para cada palabra."
     )
 
+    parser.add_argument(
+        "--no-translate",
+        action="store_true",
+        help="Cuenta palabras pero omite las llamadas a las APIs de traducción. Se fuerza si el idioma es 'es'."
+    )
+
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
 
-    lang = args.lang  # de, en, pt, it
+    lang = args.lang  # de, en, pt, it, es
     script_dir = Path(__file__).resolve().parent
     cache_path = script_dir / CACHE_FILENAME
+
+    if lang == "es" and not args.no_translate:
+        print("ℹ️ Idioma 'es' detectado: se omitirá la traducción automáticamente.")
+
+    no_translate_mode = args.no_translate or (lang == "es")
 
     # 1) Leer texto (archivos, literal o stdin)
     text = read_text_from_inputs(args.inputs, lang)
 
     # 2) Cargar palabras ignoradas
-    ignore_set = load_ignore_words(script_dir, args.exclude, lang)
+    ignore_dict = load_ignore_words(script_dir, args.exclude, lang)
 
     # 3) Contar palabras
-    words_data, total_tokens, considered_tokens = count_words(text, lang, ignore_set)
+    words_data, total_tokens, considered_tokens = count_words(text, lang, ignore_dict)
 
     if not words_data:
         print("No se encontraron palabras (o todas fueron excluidas).")
@@ -631,16 +673,21 @@ def main():
         cache[lang] = {}
     lang_cache = cache[lang]
 
-    # 5) Traducir palabras únicas con barra de progreso
-    #    words_data: norm -> {original, count}
-    from tqdm import tqdm
-    for norm, info in tqdm(words_data.items(), desc="Traduciendo", ncols=80):
-        original_word = info["original"]
-        meaning = get_translation(norm, original_word, lang, lang_cache, debug=args.debug)
-        info["meaning"] = meaning
+    if no_translate_mode:
+        # Saltar traducciones y rellenar con marcador
+        for info in words_data.values():
+            info["meaning"] = "-"
+    else:
+        # 5) Traducir palabras únicas con barra de progreso
+        #    words_data: norm -> {original, count}
+        from tqdm import tqdm
+        for norm, info in tqdm(words_data.items(), desc="Traduciendo", ncols=80):
+            original_word = info["original"]
+            meaning = get_translation(norm, original_word, lang, lang_cache, debug=args.debug)
+            info["meaning"] = meaning
 
-    # Guardar cache actualizado
-    save_cache(cache_path, cache)
+        # Guardar cache actualizado solo si hubo traducciones
+        save_cache(cache_path, cache)
 
     # 6) Preparar lista ordenada para salida
     entries = []

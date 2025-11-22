@@ -1,0 +1,14 @@
+Mein Tag begann heute, wie immer, viel zu spät und gleichzeitig viel zu früh. Ich habe nämlich kaum geschlafen, weil ich gestern Nacht noch versucht habe, einen völlig zerstörten Code zum Laufen zu bringen. Als ich schließlich aufgewacht bin, war mein erster Gedanke nicht „Guten Morgen“, sondern „Wo ist meine verdammte Monster-Dose?“.
+
+Nach einem schnellen Schluck Koffein, der eher nach chemischem Experiment als nach Getränk schmeckte, habe ich meinen Laptop aufgeklappt. Natürlich begrüßte mich mein Betriebssystem mit drei Fehlermeldungen, einer Kernel-Panic und einem Bildschirm, der so aussah, als würde er mich persönlich verurteilen.
+Trotzdem habe ich mich durchgebissen und angefangen, weiter an meinem Projekt zu arbeiten. Der Code war ein einziges Chaos: verschachtelte Funktionen, die kein Mensch freiwillig lesen würde, Variablennamen, die ich selbst nicht mehr verstanden habe… aber hey, es läuft irgendwie.
+
+Währenddessen habe ich die zweite Monster-Dose geöffnet. Ab diesem Punkt war ich mir nicht mehr sicher, ob mein Herz schneller wegen des Koffeins oder wegen der Abgabefrist geschlagen hat. Wahrscheinlich beides.
+
+Am Nachmittag hatte ich Online-Vorlesung. Ich habe natürlich so getan, als würde ich zuhören, aber in Wirklichkeit habe ich nebenbei weiter programmiert. Die Professorin hat irgendwas über Datenstrukturen erzählt, aber ich habe nur jedes dritte Wort verstanden, weil mein Gehirn sich angefühlt hat wie ein übertakteter Prozessor kurz vor dem Durchbrennen.
+
+Gegen Abend habe ich eine Pause gemacht – also, zumindest habe ich versucht, eine zu machen. Doch kaum hatte ich mich hingesetzt, fiel mir ein weiterer Bug ein, den ich unbedingt sofort fixen musste. Die dritte Monster-Dose war da auch schon fällig.
+Zwischenzeitlich habe ich kurz überlegt, ob ich überhaupt noch menschlich bin oder schon zu 70 % aus Koffein und Stress bestehe.
+
+Jetzt sitze ich hier, die Augen halb offen, die Hände zittern ein bisschen, und ich frage mich, ob dieser Lebensstil gesund ist. Die Antwort lautet 
+wahrscheinlich nein. Aber der Code läuft – und das ist alles, was heute wirklich zählt.

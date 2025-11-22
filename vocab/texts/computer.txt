@@ -1,0 +1,24 @@
+Wenn man von einem Computer spricht, denken viele Leute nur an den „PC“ als Kasten unter dem Tisch oder an einen Laptop. In Wirklichkeit besteht ein Rechner jedoch aus einer ganzen Reihe spezialisierter Komponenten, die eng zusammenarbeiten. Das Herzstück ist dabei die CPU (Central Processing Unit), also der Prozessor.
+
+In der CPU befinden sich mehrere wichtige Einheiten. Die ALU (Arithmetic Logic Unit) ist für alle arithmetischen und logischen Operationen zuständig, zum Beispiel Additionen, Vergleiche oder logische Verknüpfungen. Neben der ALU gibt es das Steuerwerk (Control Unit), das den Ablauf der Befehle koordiniert: Es holt Instruktionen aus dem Speicher, dekodiert sie und steuert, welche Teile der CPU gerade aktiv sind.
+
+Ein zentraler Bestandteil ist auch der Program Counter (PC). Dieses Register speichert die Adresse der nächsten Instruktion, die ausgeführt werden soll. Nach jedem ausgeführten Befehl wird der Program Counter entweder automatisch weitergezählt oder durch Sprungbefehle auf eine andere Adresse gesetzt. Auf diese Weise entsteht der Ablauf eines Programms.
+
+Die CPU arbeitet nicht allein, sondern nutzt einen Registersatz, also eine kleine, extrem schnelle Menge von Speicherzellen im Prozessor selbst. Register dienen als Zwischenspeicher für Werte, Adressen und Zustände.
+Zwischen CPU und Hauptspeicher befindet sich außerdem eine Cache-Hierarchie (L1, L2, oft L3). Caches sind sehr schnelle Speicherbereiche, die häufig benötigte Daten und Instruktionen vorhalten, damit die CPU nicht ständig auf den langsameren RAM zugreifen muss.
+
+Der Hauptspeicher (RAM) ist der Arbeitsbereich des Systems. Hier liegen Programme und Daten in dem Moment, in dem sie verarbeitet werden. Direkt mit dem RAM verbunden ist eine spezielle Komponente der CPU: die MMU (Memory Management Unit).
+Die MMU übersetzt virtuelle Adressen, mit denen Programme arbeiten, in physische Adressen im RAM. Sie nutzt dazu Seitentabellen, verwaltet Rechte (z. B. nur lesen, nicht schreiben) und sorgt dafür, dass Prozesse voneinander getrennt bleiben. Oft arbeitet sie zusammen mit einem TLB (Translation Lookaside Buffer), einem kleinen Cache für Adressübersetzungen.
+
+Damit alle Komponenten miteinander kommunizieren können, gibt es verschiedene Bus-Systeme. Der Datenbus transportiert Daten, der Adressbus überträgt Speicheradressen und der Steuerbus übermittelt Signale, die den Ablauf der Operationen steuern. Moderne Systeme verwenden dafür z. B. PCIe, um schnelle Verbindung zu Grafikkarten, SSDs und anderen Erweiterungskarten herzustellen.
+
+Für die dauerhafte Speicherung kommen Massenspeicher wie SSDs oder HDDs zum Einsatz. Hier bleiben Daten auch dann erhalten, wenn der Computer ausgeschaltet ist. Das Betriebssystem, Programme und persönliche Dateien sind alle auf solchen Speichern abgelegt und werden beim Start eines Programms in den RAM geladen.
+
+Ein weiteres wichtiges Bauteil ist die GPU (Graphics Processing Unit). Ursprünglich war sie vor allem für die Bildausgabe zuständig, heute übernimmt sie aber auch rechenintensive Aufgaben wie 3D-Grafik, Videobearbeitung oder allgemeine Parallelberechnungen. GPUs besitzen viele kleine Recheneinheiten, die speziell für massiv parallele Aufgaben optimiert sind.
+
+Alle diese Komponenten werden über das Mainboard verbunden. Auf dem Mainboard befinden sich neben CPU-Sockel und RAM-Steckplätzen auch der Chipsatz, der viele Verwaltungsaufgaben übernimmt, sowie Anschlüsse für Peripheriegeräte.
+Damit das alles überhaupt funktioniert, braucht der Rechner noch ein Netzteil, das die elektrische Energie aus der Steckdose in passende Spannungen für die einzelnen Komponenten umwandelt.
+
+Zusammengenommen bilden diese Bauteile ein komplexes System:
+Die CPU holt Instruktionen, der Program Counter steuert die Reihenfolge, die ALU rechnet, die MMU schützt und übersetzt Adressen, der Cache beschleunigt Zugriffe, der RAM liefert Daten, die GPU übernimmt parallele Last, Massenspeicher bewahren alles dauerhaft, und das Mainboard verbindet alle Schichten miteinander.
+Was für den Benutzer wie ein einziger „Computer“ wirkt, ist in Wahrheit ein fein abgestimmtes Zusammenspiel vieler spezialisierter Teile.

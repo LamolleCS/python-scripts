@@ -1,0 +1,23 @@
+Heute bin ich mit einem Geräusch aufgewacht, das eher nach einem sterbenden Server klang als nach meinem Wecker. Ich hatte ungefähr vier Stunden geschlafen – genug, um symbolisch am Leben zu bleiben, aber nicht genug, um irgendeine Form von Klarheit zu haben.
+Ich bin direkt zum Kühlschrank gegangen, habe die erste Monster aufgerissen und mir eingeredet, dass das „Frühstück“ zählt.
+
+Noch bevor ich richtig saß, hat mein Arch-Linux-Laptop beschlossen, mich zu hassen. Das System meldete eine fehlgeschlagene Systemd-Unit, der Wayland-Session-Manager hat geflackert, und Hyprland hat sich verhalten, als würde er versuchen, mich in den Wahnsinn zu treiben.
+Aber ein paar Terminal-Befehle später – und einer zweiten Monster-Dose, die ich praktisch intravenös getrunken habe – lief wieder alles halbwegs stabil. „Stable“ im Linux-Sinn, also instabil, aber funktionierend.
+
+Ich habe dann weiter an meinem Uni-Projekt gearbeitet: einer Mischung aus C-Code, der aussieht wie eine archäologische Ausgrabung, und Python-Skripten, die mehr Hotfixes als Funktionen enthalten.
+Nach zwei Stunden Debugging habe ich festgestellt, dass der Bug, der mich die ganze Nacht verfolgt hat, ein fehlendes Semikolon war. Ich habe kurz darüber nachgedacht zu schreien, aber stattdessen öffnete ich einfach die dritte Monster-Dose. Prioritäten.
+
+Am Nachmittag musste ich einen Server konfigurieren. Natürlich ist währenddessen der SSH-Tunnel abgestürzt, die Firewall hat sich ohne Grund quergelegt und ein Docker-Container hat beschlossen, sich neu zu erfinden und alle Logs zu ignorieren.
+Ich habe das Problem schließlich gelöst, indem ich so viele Dienste neugestartet habe, dass ich mich selbst gefragt habe, ob ich gerade Linux administriere oder einfach rituelle Opferungen durchführe.
+
+Später hatte ich noch eine Gruppenarbeit. Alle taten so, als hätten sie alles im Griff, obwohl der Code unseres Repos aussah wie eine Mischung aus Spaghetti, Black Magic und Verzweiflung.
+Ich war der Einzige, der ehrlich genug war zuzugeben, dass er nicht weiß, warum die Hälfte funktioniert. Die anderen haben genickt, als wäre das normal.
+
+Jetzt, am Ende des Tages, sitze ich hier mit der letzten Monster-Dose des Tages – Nummer vier, glaube ich – und schaue auf meinen Bildschirm. Meine Hände zittern ein bisschen, der Lüfter meines Laptops klingt wie ein Jet-Triebwerk, und ich bin mir nicht sicher, ob wir beide noch lange durchhalten.
+
+Aber:
+Der Code kompiliert.
+Der Server läuft.
+Und ich habe (theoretisch) noch ein bisschen Energie.
+
+Für einen Informatikstudenten ist das ein Erfolgstag.
